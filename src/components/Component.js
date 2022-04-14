@@ -1,30 +1,47 @@
-import React from "react";
-const arrJobs = [
-  { id: "job1", title: "php", quantity: 2 },
-  { id: "job2", title: "php", quantity: 122 },
-  { id: "job3", title: "php", quantity: 121 },
-  { id: "job4", title: "php", quantity: 12 },
-  { id: "job5", title: "php", quantity: 82 },
-];
+import React, { useState } from "react";
+
 
 function Component(props) {
-  return <div className="container">
-      <ol>
-          {arrJobs.map((item,index)=>{
-          return (
-            <li key={item.id}>
-              id:{item.id}--title:{item.title}--quantity:
-              {item.quantity <= 2 ? (
-                <span> nhân viên đã đủ </span>
-              ) : (
-                item.quantity
-              )}
-            </li>
-          );
-      })}
-      </ol>
-      
-  </div>;
+    const[username,setUsername]=useState('')
+    const [password, setPassword] = useState('');
+    
+    const handleChangeUsername = (e) => {
+        const value=e.target.value
+        setUsername(value);
+    };
+    const handleChangePassword = (e) => {
+      const value = e.target.value;
+      setPassword(value);
+    };
+
+   const handleOnclick = (e) => {
+       console.log({ username, password });
+   };
+
+
+  return (
+    <div className="container">
+      <div>
+        <input
+          type="text"
+          placeholder="username"
+          value={username}
+          onChange={handleChangeUsername}
+        />
+      </div>
+      <div>
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={handleChangePassword}
+        />
+      </div>
+      <div>
+        <button onClick={handleOnclick}>Submit</button>
+      </div>
+    </div>
+  );
 }
 
 export default Component;

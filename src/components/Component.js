@@ -1,42 +1,32 @@
 import { type } from "@testing-library/user-event/dist/type";
 import React, { useState } from "react";
 
-
-function Component({defaultNumber}) {
-
-    const [wallet, setwallet] = useState({
-        address:'Hà Nam',
-        name:'Nam',
-        property:1000000
-    });
-    const increase = (e) => {
-       
-        setwallet({
-          ...wallet,
-          property: wallet.property + 1000,
-        });
-    };
-   
-    const decrease = (e) => {
-      
-        setwallet({
-          ...wallet,
-          property: wallet.property - 10000,
-        });
-    };
-    const handleAlert = (mess) => {
-        alert(mess)
-    };
-
+function Component({ defaultNumber }) {
+  const [showHidebackground, setShowhide] = useState(false);
+  const toggle = (e) => {
+    setShowhide(!showHidebackground);
+  };
   return (
     <div className="container">
-      <button onClick={increase}>increase + 1000 </button>
-      <h2>Wallet</h2>
-      <div>{wallet.address}</div>
-      <div>{wallet.name}</div>
-      <div>{wallet.property}</div>
-      <button onClick={decrease}>decrease - 10000</button>
-      <button onClick={(e)=>{handleAlert('chào các bạn ')}}>click me</button>
+      <div
+        style={
+          showHidebackground
+            ? {
+                width: "100px",
+                height: "100px",
+                color: "black",
+                fontSize: "18px",
+                backgroundColor: " #FFFFFF",
+                backgroundImage:
+                  "linear-gradient(180deg, #FFFFFF 0%, #6284FF 50%, #FF0000 100%)",
+                  borderRadius:'50%'
+              }
+            : { display: "none" }
+        }
+      >
+        Hello các bạn{" "}
+      </div>
+      <button onClick={toggle}>show/hide</button>
     </div>
   );
 }
